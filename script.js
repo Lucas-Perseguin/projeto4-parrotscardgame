@@ -1,10 +1,13 @@
-let qtyCards = undefined;
+let qtyCards = 0;
+let pairsCounter = 0;
+let selectedCards = 0;
+let moves = 0;
 
 function createCards(){
     for (let  i = 0; i < qtyCards; i++){
         const card = document.createElement("div");
         card.classList.add('card');
-        card.setAttribute("onclick","turnCard(this);");
+        card.setAttribute("onclick","selectCard(this);");
         const frontFace = document.createElement('div');
         frontFace.classList.add('front-face', 'face');
         const img = document.createElement('img');
@@ -31,7 +34,7 @@ const cards =
 `<img src="img/unicornparrot.gif" alt="Unicorn Parrot" class="img"/>`
 ];
 
-const cardsArray = [];
+let cardsArray = [];
 
 let displayedCards = [];
 
@@ -41,6 +44,60 @@ function turnCard(card){
     back.classList.toggle('hide-back');
     front.classList.toggle('hide-front');
     back.classList.toggle('hold-back');
+}
+
+function removeCards(){
+    const cardsToRemove = document.querySelectorAll('.card');
+    console.log(cardsToRemove);
+    for (let i = 0; i < cardsToRemove.length; i++){
+        cardsToRemove[i].remove();
+    }
+}
+
+function gameFinished(){
+    alert(`Você ganhou em ${moves} jogadas!`);
+    let restart = prompt('Você gostaria de jogar novamente?');
+    if (restart === 'sim'){
+        cardsArray = [];
+        displayedCards = [];
+        removeCards();
+        selectCards = 0;
+        pairsCounter = 0;
+        moves = 0;
+        promptGame();
+    }
+}
+
+function selectCard(card){
+    if (card.classList.contains('selected')){
+        return;
+    }
+    else if (selectedCards === 1){
+        const selected = document.querySelector('.selected');
+        if (selected.querySelector('.back-face').innerHTML == card.querySelector('.back-face').innerHTML){
+            turnCard(card);
+            selected.classList.remove('selected');
+            selectedCards = 0;
+            pairsCounter += 1;
+            if (pairsCounter === qtyCards / 2){
+                setTimeout(gameFinished, 500);
+            }
+        }
+        else{
+            setTimeout(turnCard, 0, card);
+            setTimeout(turnCard, 1000, selected);
+            setTimeout(turnCard, 1000, card);
+            setTimeout(() => {selected.classList.remove('selected')}, 1000, selected);
+            selectedCards = 0;
+        }
+        moves += 1;
+    }
+    else{
+        turnCard(card);
+        card.classList.add('selected');
+        selectedCards = 1;
+        moves += 1;
+    }
 }
 
 function compare() { 
@@ -54,11 +111,10 @@ function startGame(){
     }
     displayedCards.sort(compare);
     createCards();
-    for (let  i = 0; i < qtyCards; i++){
-        cardsArray[i].querySelector('.back-face').innerHTML = displayedCards[i];
-        document.querySelector('.game').appendChild(cardsArray[i]);
+    for (let  j = 0; j < qtyCards; j++){
+        cardsArray[j].querySelector('.back-face').innerHTML = displayedCards[j];
+        document.querySelector('.game').appendChild(cardsArray[j]);
     }
-    displayedCards = [];
     const cssTemplateString =`.game-size{width: calc(${qtyCards / 2} * 151px);}`;
     const styleTag = document.createElement("style");
     styleTag.innerHTML = cssTemplateString;
@@ -69,7 +125,7 @@ function startGame(){
 function promptGame(){
     do {
         qtyCards = Number(prompt('Gostaria de jogar com quantas cartas?'));
-    } while (isNaN(qtyCards) || qtyCards == 0 || qtyCards % 2 !== 0 || qtyCards < 4 || qtyCards > 14);
+    } while (isNaN(qtyCards) || qtyCards % 2 !== 0 || qtyCards < 4 || qtyCards > 14);
     startGame();
 }
 

@@ -2,6 +2,25 @@ let qtyCards = 0;
 let pairsCounter = 0;
 let selectedCards = 0;
 let moves = 0;
+let minutes = document.querySelector('.minutes');
+let seconds = document.querySelector('.seconds');
+let totalSeconds = 0;
+setInterval(setTime, 1000);
+
+function setTime() {
+  totalSeconds++;
+  seconds.innerHTML = pad(totalSeconds % 60);
+  minutes.innerHTML = pad(parseInt(totalSeconds / 60));
+}
+
+function pad(num) {
+  let numString = num + "";
+  if (numString.length < 2) {
+    return "0" + numString;
+  } else {
+    return numString;
+  }
+}
 
 function createCards(){
     for (let  i = 0; i < qtyCards; i++){
@@ -55,7 +74,7 @@ function removeCards(){
 }
 
 function gameFinished(){
-    alert(`Você ganhou em ${moves} jogadas!`);
+    alert(`Você ganhou em ${moves} jogadas e levou ${minutes.innerHTML} minutos e ${seconds.innerHTML} segundos!`);
     let restart = prompt('Você gostaria de jogar novamente?');
     if (restart === 'sim'){
         cardsArray = [];
@@ -64,6 +83,11 @@ function gameFinished(){
         selectCards = 0;
         pairsCounter = 0;
         moves = 0;
+        const style = document.head.querySelector('style');
+        style.remove();
+        minutes.innerHTML = '00';
+        seconds.innerHTML = '00';
+        totalSeconds = 0;
         promptGame();
     }
 }

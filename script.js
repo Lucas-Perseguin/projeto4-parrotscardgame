@@ -139,11 +139,14 @@ function startGame(){
         cardsArray[j].querySelector('.back-face').innerHTML = displayedCards[j];
         document.querySelector('.game').appendChild(cardsArray[j]);
     }
-    const cssTemplateString =`.game-size{width: calc(${qtyCards / 2} * 151px);}`;
-    const styleTag = document.createElement("style");
-    styleTag.innerHTML = cssTemplateString;
-    document.head.insertAdjacentElement('beforeend', styleTag);
-    document.querySelector('.game').classList.add('game-size');
+    const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    if (width >= 1091){
+        let cssTemplateString = `.game-size{width: calc(${qtyCards / 2} * 151px);}`;
+        const styleTag = document.createElement("style");
+        styleTag.innerHTML = cssTemplateString;
+        document.head.insertAdjacentElement('beforeend', styleTag);
+        document.querySelector('.game').classList.add('game-size');
+    }
 }
 
 function promptGame(){
@@ -152,8 +155,3 @@ function promptGame(){
     } while (isNaN(qtyCards) || qtyCards % 2 !== 0 || qtyCards < 4 || qtyCards > 14);
     startGame();
 }
-
-
-/*@media (max-device-width: 614px) {
-
-}*/

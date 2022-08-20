@@ -50,7 +50,26 @@ const cards =
 `<img src="img/metalparrot.gif" alt="Metal Parrot" class="img"/>`,
 `<img src="img/revertitparrot.gif" alt="Revertit Parrot" class="img"/>`,
 `<img src="img/tripletsparrot.gif" alt="Triplets Parrot" class="img"/>`,
-`<img src="img/unicornparrot.gif" alt="Unicorn Parrot" class="img"/>`
+`<img src="img/unicornparrot.gif" alt="Unicorn Parrot" class="img"/>`,
+`<img src="img/3parrots.gif" alt="Three Parrots" class="img"/>`,
+`<img src="img/birthdayparrot.gif" alt="Birthday Parrot" class="img"/>`,
+`<img src="img/brazilparrot.gif" alt="Brazillian Parrot" class="img"/>`,
+`<img src="img/detectiveparrot.gif" alt="Detective Parrot" class="img"/>`,
+`<img src="img/devilparrot.gif" alt="Devil Parrot" class="img"/>`,
+`<img src="img/dogeparrot.gif" alt="Doge Parrot" class="img"/>`,
+`<img src="img/drinkingparrot.gif" alt="Drinking Parrot" class="img"/>`,
+`<img src="img/footballparrot.gif" alt="Football Parrot" class="img"/>`,
+`<img src="img/headbangingparrot.gif" alt="Headbanging Parrot" class="img"/>`,
+`<img src="img/lsdparrot.gif" alt="LSD Parrot" class="img"/>`,
+`<img src="img/mustacheparrot.gif" alt="Mustache Parrot" class="img"/>`,
+`<img src="img/negativeparrot.gif" alt="Negative Parrot" class="img"/>`,
+`<img src="img/pirateparrot.gif" alt="Pirate Parrot" class="img"/>`,
+`<img src="img/policeparrot.gif" alt="Police Parrot" class="img"/>`,
+`<img src="img/popcornparrot.gif" alt="Pop Corn Parrot" class="img"/>`,
+`<img src="img/scientistparrot.gif" alt="Scientist Parrot" class="img"/>`,
+`<img src="img/soccerparrot.gif" alt="Soccer Parrot" class="img"/>`,
+`<img src="img/sunglassparrot.gif" alt="Sunglass Parrot" class="img"/>`,
+`<img src="img/tenisparrot.gif" alt="Tenis Parrot" class="img"/>`
 ];
 
 let cardsArray = [];
